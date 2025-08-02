@@ -46,8 +46,9 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{list}</ul>
       </div>
-      <div className="navbar-end">
-        <NavLink to={"/register"}>Register</NavLink>
+      <div className="navbar-end ">
+        <NavLink className="p-2" to={"/register"}>Register</NavLink>
+        <NavLink className="p-2" to={"/login"}>Login</NavLink>
       </div>
     </div>
   );
