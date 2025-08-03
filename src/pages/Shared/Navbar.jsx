@@ -1,7 +1,20 @@
-import React from "react";
+import React, { use } from "react";
 import { NavLink } from "react-router";
+import { AuthContext } from "../../contexts/AuthContext/AuthContext";
 
 const Navbar = () => {
+  const { user, logOut } = use(AuthContext);
+
+  const handleLogout = () =>{
+    logOut()
+    .then(()=>{
+      console.log("logged out");
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  }
+
   const list = (
     <>
       <li>
@@ -47,8 +60,21 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{list}</ul>
       </div>
       <div className="navbar-end ">
-        <NavLink className="p-2" to={"/register"}>Register</NavLink>
-        <NavLink className="p-2" to={"/login"}>Login</NavLink>
+        {user ? (
+          <div className="flex items-center">
+            <p>{user.email}</p>
+            <button onClick={handleLogout} className="p-2 hover:cursor-pointer">LogOut</button>
+          </div>
+        ) : (
+          <div>
+            <NavLink className="p-2" to={"/register"}>
+              Register
+            </NavLink>
+            <NavLink className="p-2" to={"/login"}>
+              Login
+            </NavLink>
+          </div>
+        )}
       </div>
     </div>
   );
