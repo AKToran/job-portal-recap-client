@@ -8,7 +8,7 @@ const Banner = () => {
     <div className="flex p-8 items-center ">
       <div className="flex-1 p-8">
         <motion.h1
-          className="text-xl"
+          className="text-xl font-semibold"
           animate={{
             scale: 2,
             transition: { duration: 2 },
@@ -39,18 +39,18 @@ const Banner = () => {
         <motion.img
           animate={{
             y: [0, 80, 0],
-            transition: { duration: 8, repeat: Infinity },
+            transition: { duration: 6, delay:2, repeat: Infinity },
           }}
-          className="w-80 rounded-xl"
+          className="w-80 rounded-t-3xl rounded-r-3xl border-s-4 border-b-4 border-amber-400"
           src={team2}
           alt=""
         />
         <motion.img
           animate={{
             x: [50, 100, 50],
-            transition: { duration: 8, repeat: Infinity },
+            transition: { duration: 8, delay:3, repeat: Infinity },
           }}
-          className="w-80 rounded-xl"
+          className="w-80 rounded-t-3xl rounded-r-3xl border-s-4 border-b-4 border-amber-400"
           src={team1}
           alt=""
         />
