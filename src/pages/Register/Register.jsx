@@ -3,6 +3,7 @@ import React, { use } from "react";
 import { Link } from "react-router";
 import register from '../../assets/register.json'
 import { AuthContext } from "../../contexts/AuthContext/AuthContext";
+import GmailLogin from "../Shared/GmailLogin";
 
 const Register = () => {
   const { createUser } = use(AuthContext);
@@ -45,6 +46,9 @@ const Register = () => {
             </div>
             <button className="btn btn-neutral mt-4">Register</button>
           </form>
+          <div>
+            <GmailLogin/>
+          </div>
         </div>
       </div>
     </div>

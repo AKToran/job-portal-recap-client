@@ -2,6 +2,7 @@ import Lottie from "lottie-react";
 import React, { use } from "react";
 import login from "../../assets/Login.json";
 import { AuthContext } from "../../contexts/AuthContext/AuthContext";
+import GmailLogin from "../Shared/GmailLogin";
 
 const Login = () => {
   const { loginUser } = use(AuthContext);
@@ -50,6 +51,10 @@ const Login = () => {
             </div>
             <button className="btn btn-neutral mt-4">Login</button>
           </form>
+
+          <div>
+            <GmailLogin />
+          </div>
         </div>
       </div>
     </div>
