@@ -1,8 +1,17 @@
-import React from "react";
+import React, { use } from "react";
+import { AuthContext } from "../../contexts/AuthContext/AuthContext";
 
 const GmailLogin = () => {
+  const { loginWithGoogle } = use(AuthContext);
+
   const handleGoogleLogin = () => {
-    console.log("google");
+    loginWithGoogle()
+    .then(result =>{
+      console.log(result.user);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
   };
 
   return (
