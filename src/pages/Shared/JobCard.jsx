@@ -1,8 +1,10 @@
 import React from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { Link } from "react-router";
 
 const JobCard = ({ job }) => {
   const {
+    _id,
     title,
     location,
     jobType,
@@ -10,6 +12,8 @@ const JobCard = ({ job }) => {
     description,
     company,
     company_logo,
+    requirements,
+    salaryRange
   } = job;
 
   return (
@@ -17,7 +21,7 @@ const JobCard = ({ job }) => {
       <div className="card-body">
         <div className="flex gap-2">
           <figure>
-            <img src={company_logo} alt="logo" />
+            <img className="w-16" src={company_logo} alt="logo" />
           </figure>
           <div>
             <h3 className="text-2xl font-semibold">{company}</h3>
@@ -29,12 +33,18 @@ const JobCard = ({ job }) => {
         </div>
         <h2 className="card-title">
           {title}
-          <div className="badge badge-secondary">{category}</div>
-          <div className="badge badge-secondary">{jobType}</div>
+          <div className="badge badge-sm badge-secondary">{category}</div>
+          <div className="badge badge-sm badge-secondary">{jobType}</div>
         </h2>
+        <p>Salary: {salaryRange.min} - {salaryRange.max} {salaryRange.currency}</p>
         <p>{description}</p>
+        <div className="space-x-2">
+          {
+            requirements.map((req, i)=> <div key={i} className="badge badge-outline">{req}</div>)
+          }
+        </div>
         <div className="card-actions justify-end">
-          <button className="btn btn-info font-bold">Details</button>
+          <Link to={`/jobs/${_id}`} className="btn btn-primary font-bold">Details</Link>
         </div>
       </div>
     </div>
