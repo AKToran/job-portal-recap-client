@@ -55,7 +55,7 @@ const JobDetails = () => {
             </div>
             <p className='font-semibold'>Status: {status}</p>
             <div className="card-actions justify-end mt-4">
-              <Link to={`/apply/${_id}`} className="btn btn-primary font-bold">Apply Now</Link>
+              <Link to={`/jobApply/${_id}`} className="btn btn-primary font-bold">Apply Now</Link>
             </div>
           </div>
         </div>

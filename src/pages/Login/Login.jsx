@@ -3,9 +3,13 @@ import React, { use } from "react";
 import login from "../../assets/Login.json";
 import { AuthContext } from "../../contexts/AuthContext/AuthContext";
 import GmailLogin from "../Shared/GmailLogin";
+import { useLocation, useNavigate } from "react-router";
 
 const Login = () => {
   const { loginUser } = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -16,6 +20,7 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         console.log(result.user);
+        navigate( location.state | '/' )
       })
       .catch((err) => {
         console.log(err);
