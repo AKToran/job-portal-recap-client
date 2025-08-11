@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import Banner from './Banner';
 import HotJobs from './HotJobs';
+import Spinner from '../Shared/Spinner';
 
 const Home = () => {
 
@@ -9,7 +10,7 @@ const Home = () => {
   return (
     <div>
       <Banner/>
-      <Suspense fallback={<p>loading hot jobs</p>}>
+      <Suspense fallback={<Spinner/>}>
         <HotJobs jobsPromise={jobsPromise} />
       </Suspense>
     </div>

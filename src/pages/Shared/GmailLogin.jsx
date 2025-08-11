@@ -10,6 +10,7 @@ const GmailLogin = () => {
   const handleGoogleLogin = () => {
     loginWithGoogle()
     .then(result =>{
+      const _ = result.user;
       // console.log(result.user);
       navigate( location.state || '/' )
     })

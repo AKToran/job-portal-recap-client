@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import JobDetails from "../pages/JobDetails/JobDetails";
 import PrivateRoute from "../routes/PrivateRoute";
 import JobApply from "../pages/JobApply/JobApply";
+import Spinner from "../pages/Shared/Spinner";
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path:'jobs/:id',
+        HydrateFallback: Spinner,
         loader: ({params})=> fetch(`http://localhost:3000/jobs/${params.id}`),
         element: <PrivateRoute> <JobDetails/> </PrivateRoute>
       },
