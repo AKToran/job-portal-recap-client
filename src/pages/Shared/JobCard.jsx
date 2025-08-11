@@ -43,7 +43,7 @@ const JobCard = ({ job }) => {
             requirements.map((req, i)=> <div key={i} className="badge badge-outline">{req}</div>)
           }
         </div>
-        <div className="card-actions justify-end">
+        <div className="card-actions justify-end mt-4">
           <Link to={`/jobs/${_id}`} className="btn btn-primary font-bold">Details</Link>
         </div>
       </div>
