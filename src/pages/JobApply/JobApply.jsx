@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 const JobApply = () => {
   const { id: jobId } = useParams();
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const handleApplyForm = (e) => {
     e.preventDefault();
@@ -27,6 +28,7 @@ const JobApply = () => {
       .post("http://localhost:3000/applications", application)
       .then((res) => {
         if (res.data.insertedId) {
+          navigate('/myApplications');
           Swal.fire({
             position: "top-end",
             icon: "success",

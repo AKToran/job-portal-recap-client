@@ -5,15 +5,15 @@ import { AuthContext } from "../../contexts/AuthContext/AuthContext";
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
 
-  const handleLogout = () =>{
+  const handleLogout = () => {
     logOut()
-    .then(()=>{
-      console.log("logged out");
-    })
-    .catch(err=>{
-      console.log(err);
-    })
-  }
+      .then(() => {
+        console.log("logged out");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const list = (
     <>
@@ -23,6 +23,13 @@ const Navbar = () => {
       <li>
         <NavLink to={"/jobs"}>Jobs</NavLink>
       </li>
+      {user && (
+        <>
+          <li>
+            <NavLink to={"/myApplications"}>My Applications</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 
@@ -63,7 +70,9 @@ const Navbar = () => {
         {user ? (
           <div className="flex items-center">
             <p>{user.email}</p>
-            <button onClick={handleLogout} className="p-2 hover:cursor-pointer">LogOut</button>
+            <button onClick={handleLogout} className="p-2 hover:cursor-pointer">
+              LogOut
+            </button>
           </div>
         ) : (
           <div>
