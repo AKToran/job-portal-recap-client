@@ -11,15 +11,19 @@ const ApplicationList = ({ applicationsPromise }) => {
           <tr>
             <th></th>
             <th>Job Id</th>
+            <th>Application Id</th>
+            <th>Job Title</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {applications.map((app,i) => (
-            <tr key={i}>
+            <tr key={app._id}>
               <th>{i+1}</th>
               <td>{app.jobId}</td>
-              <td><Link className="link-info link-hover" to={`/jobs/${app.jobId}`}>Details</Link></td>
+              <td>{app._id}</td>
+              <td>{app.jobTitle}</td>
+              <td><Link className="link-info link-hover" to={`/jobs/${app.jobId}`}>Job Details</Link></td>
             </tr>
           ))}
         </tbody>
