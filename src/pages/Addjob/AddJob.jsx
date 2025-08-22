@@ -1,13 +1,22 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
-import { div } from "motion/react-client";
 
 const AddJob = () => {
   const { user } = useAuth();
+
+  const handleAddJob = e =>{
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    console.log(data);
+  }
+
   return (
     <div>
       <h3 className="text-3xl text-center mt-8 font-semibold">Please Fill this form to add a job:</h3>
-      <form>
+      <form onSubmit={handleAddJob}>
       <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
         <legend className="fieldset-legend">Basic Info</legend>
 
@@ -29,9 +38,9 @@ const AddJob = () => {
         <legend className="fieldset-legend">Job Type</legend>
         <div className="filter">
           <input className="btn filter-reset" type="radio" name="type" aria-label="All"/>
-          <input className="btn" type="radio" name="type" aria-label="On-Site"/>
-          <input className="btn" type="radio" name="type" aria-label="Remote"/>
-          <input className="btn" type="radio" name="type" aria-label="Hybrid"/>
+          <input className="btn" name="type" type="radio" name="type" aria-label="On-Site"/>
+          <input className="btn" name="type" type="radio" name="type" aria-label="Remote"/>
+          <input className="btn" name="type" type="radio" name="type" aria-label="Hybrid"/>
         </div>
       </fieldset>
 
