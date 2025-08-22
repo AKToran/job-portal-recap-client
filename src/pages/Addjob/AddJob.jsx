@@ -38,9 +38,9 @@ const AddJob = () => {
         <legend className="fieldset-legend">Job Type</legend>
         <div className="filter">
           <input className="btn filter-reset" type="radio" name="type" aria-label="All"/>
-          <input className="btn" name="type" type="radio" name="type" aria-label="On-Site"/>
-          <input className="btn" name="type" type="radio" name="type" aria-label="Remote"/>
-          <input className="btn" name="type" type="radio" name="type" aria-label="Hybrid"/>
+          <input className="btn" type="radio" name="type" value={"On-Site"} aria-label="On-Site"/>
+          <input className="btn" type="radio" name="type" value={"Remote"} aria-label="Remote"/>
+          <input className="btn" type="radio" name="type" value={"Hybrid"} aria-label="Hybrid"/>
         </div>
       </fieldset>
 
