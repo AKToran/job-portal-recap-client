@@ -4,57 +4,123 @@ import useAuth from "../../hooks/useAuth";
 const AddJob = () => {
   const { user } = useAuth();
 
-  const handleAddJob = e =>{
+  const handleAddJob = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    console.log(data);
-  }
+    const { min, max, currency, ...newJob } = data;
+    newJob.salaryRange = {
+      min,
+      max,
+      currency,
+    };
+
+    const requirementsString = newJob.requirements;
+    const requirementsDirty = requirementsString.split(",");
+    const requirementsClean = requirementsDirty.map((req) => req.trim());
+    newJob.requirements = requirementsClean;
+
+    newJob.responsibilities = newJob.responsibilities
+      .split(",")
+      .map((res) => res.trim());
+
+    newJob.status = "active";
+
+    console.log(newJob);
+  };
 
   return (
     <div>
-      <h3 className="text-3xl text-center mt-8 font-semibold">Please Fill this form to add a job:</h3>
+      <h3 className="text-3xl text-center mt-8 font-semibold">
+        Please Fill this form to add a job:
+      </h3>
       <form onSubmit={handleAddJob}>
-      <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-        <legend className="fieldset-legend">Basic Info</legend>
+        <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
+          <legend className="fieldset-legend">Basic Info</legend>
 
-        <label className="label">Job Title</label>
-        <input type="text" name="title" className="input" placeholder="Title" />
+          <label className="label">Job Title</label>
+          <input
+            type="text"
+            name="title"
+            className="input"
+            placeholder="Title"
+          />
 
-        <label className="label">Company</label>
-        <input type="text" name="company" className="input" placeholder="Company Name" />
+          <label className="label">Company</label>
+          <input
+            type="text"
+            name="company"
+            className="input"
+            placeholder="Company Name"
+          />
 
-        <label className="label">Location</label>
-        <input type="text" name="location" className="input" placeholder="Company Location" />
+          <label className="label">Location</label>
+          <input
+            type="text"
+            name="location"
+            className="input"
+            placeholder="Company Location"
+          />
 
-        <label className="label">Logo</label>
-        <input type="url" name="logo" className="input" placeholder="Company Logo URL" />
-      </fieldset>
+          <label className="label">Logo</label>
+          <input
+            type="url"
+            name="logo"
+            className="input"
+            placeholder="Company Logo URL"
+          />
+        </fieldset>
 
-      
-      <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-        <legend className="fieldset-legend">Job Type</legend>
-        <div className="filter">
-          <input className="btn filter-reset" type="radio" name="type" aria-label="All"/>
-          <input className="btn" type="radio" name="type" value={"On-Site"} aria-label="On-Site"/>
-          <input className="btn" type="radio" name="type" value={"Remote"} aria-label="Remote"/>
-          <input className="btn" type="radio" name="type" value={"Hybrid"} aria-label="Hybrid"/>
-        </div>
-      </fieldset>
+        <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
+          <legend className="fieldset-legend">Job Type</legend>
+          <div className="filter">
+            <input
+              className="btn filter-reset"
+              type="radio"
+              name="type"
+              aria-label="All"
+            />
+            <input
+              className="btn"
+              type="radio"
+              name="type"
+              value={"On-Site"}
+              aria-label="On-Site"
+            />
+            <input
+              className="btn"
+              type="radio"
+              name="type"
+              value={"Remote"}
+              aria-label="Remote"
+            />
+            <input
+              className="btn"
+              type="radio"
+              name="type"
+              value={"Hybrid"}
+              aria-label="Hybrid"
+            />
+          </div>
+        </fieldset>
 
-      <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-        <legend className="fieldset-legend">Job Category</legend>
-        <select defaultValue="Job Category" name="category" className="select">
-          <option disabled={true}>Job Category</option>
-          <option>Engineering</option>
-          <option>Marketing</option>
-          <option>UI/UX</option>
-        </select>
-      </fieldset>
+        <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
+          <legend className="fieldset-legend">Job Category</legend>
+          <select
+            defaultValue="Job Category"
+            name="category"
+            className="select"
+          >
+            <option disabled={true}>Job Category</option>
+            <option>Engineering</option>
+            <option>Marketing</option>
+            <option>UI/UX</option>
+          </select>
+        </fieldset>
 
-      {/* Salary Range */}
+        {/* Salary Range */}
         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
           <legend className="fieldset-legend">Salary Range</legend>
 
@@ -149,9 +215,7 @@ const AddJob = () => {
         </fieldset>
 
         <input className="btn my-4" type="submit" value="Add Job" />
-
-
-    </form>
+      </form>
     </div>
   );
 };
